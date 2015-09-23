@@ -6,20 +6,24 @@
 var ngApp = angular.module('haven-sent', ['ui.router']);
 console.log("ngApp is running");
 
+ngApp.constant('constants', {
+  apiUrl: 'http://localhost:3000'
+});
+
 ngApp.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-      .state('find', {
-        url: '/find',
-        templateUrl: 'templates/find.html',
-        controller: 'FindCtrl'
+      .state('friendInput', {
+        url: '/friends',
+        templateUrl: 'templates/friendInput.html',
+        controller: 'FriendCtrl'
       })
-      .state('input', {
-        url: '/input',
-        templateUrl: 'templates/input.html',
-        controller: "InputCtrl"
+      .state('familyInput', {
+        url: '/families',
+        templateUrl: 'templates/familyInput.html',
+        controller: "FamilyCtrl"
       })
       .state('match', {
         url: '/match',
@@ -40,67 +44,88 @@ ngApp.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-ngApp.controller('FindCtrl', function($scope, $http) {
-  $scope.title = "Find a friend";
-  $scope.message = "Fields with an asterisk are required";
+ngApp.controller('FriendCtrl', function($scope, $http, Friend) {
+  $scope.title = "Find and Add a friend";
 
-  $scope.findFriend = function() {
-    console.log("Find that Friend!");
-    $http.get('http://localhost:3000/friends')
-    .then(function(data) {
-          $scope.dump = data;
-        })
+  Friend.showAll()
+    .then(function(res) {
+      console.log("All friends loaded");
+      $scope.allFriends = res.data;
+    })
     .catch(function(error) {
-          console.log(error);
-        });
-
-  };
-
-});
-
-ngApp.controller('InputCtrl', function($scope, $http) {
-  $scope.title = "Add a friend";
-  $scope.message = "Fields with an asterisk are required";
+      console.log(error);
+    });
 
   $scope.addFriend = function () {
     console.log("add that friend!");
-    $http.post('http://localhost:3000/friends', $scope.friend)
-    .then(function(data) {
-          $scope.dump = data;
-        })
-    .catch(function(error){
-          $scope.dump = error;
-        })
-  };
 
+    Friend.add($scope.friend)
+      .then(function(data) {
+        $scope.newFriend = data;
+      })
+      .catch(function(error){
+        $scope.newFriend = error;
+      })
+    };
 
 });
+
+//ngApp.controller('FamilyCtrl', function($scope, $http, Family) {
+//  $scope.title = "Find and Add a family";
+//
+//  Family.showAll()
+//      .then(function(data) {
+//        console.log("All families loaded");
+//        $scope.dump = data;
+//      })
+//      .catch(function(error) {
+//        console.log(error);
+//      });
+//
+//  $scope.addFamily = function () {
+//    console.log("add that family!");
+//
+//    Family.add($scope.family)
+//        .then(function(data) {
+//          $scope.dump = data;
+//        })
+//        .catch(function(error){
+//          $scope.dump = error;
+//        })
+//  };
+//
+//});
+
 
 ngApp.controller('MatchCtrl', function($scope, $http) {
   $scope.title = "Make a Match!";
 
-  $scope.addFriend = function () {
-    console.log("make that match!");
-    $http.post('http://localhost:3000/friends', $scope.friend)
-        .then(function(data) {
-          $scope.dump = data;
-        })
-        .catch(function(error){
-          $scope.dump = error;
-        })
-  };
+  //$scope.addFriend = function () {
+  //  console.log("make that match!");
+  //  $http.post('http://localhost:3000/friends', $scope.friend)
+  //      .then(function(data) {
+  //        $scope.dump = data;
+  //      })
+  //      .catch(function(error){
+  //        $scope.dump = error;
+  //      })
+  //};
 
 
 });
 
 
+ngApp.service('Friend', function($http, constants) {
+  let api = constants.apiUrl;
+  this.showAll = function(){return $http.get(api + '/friends');};
+  this.add = function(params) {return $http.post(api + '/friends', params);};
+});
+
 //ngApp.service('Family', function($http, constants) {
 //  let api = constants.apiUrl;
-//  this.index = function{$http.get()}
-//} )
-//    .config(function($stateProvider) {
-//
-//    })
+//  this.showAll = function(){return $http.get(api + '/families');};
+//  this.add = function(params) {return $http.post(api + '/families', params);};
+//});
 
 
   //  $scope.addTickerToTracked = (ticker) => {

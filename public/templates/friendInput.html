@@ -1,0 +1,34 @@
+<div class="container inputField">
+<h2>{{title}}</h2>
+
+<form id="findFriend table" >
+  <div>
+    <input type="text" class="required" ng-model="friend.name" placeholder="name" required  ng-change="findFriend()"/>
+    <i class="fa fa-asterisk"></i>
+  </div>
+
+  <div>
+    <input type="text" class="required" ng-model="friend.species" placeholder="species" required ng-change="findFriend()"/>
+    <i class="fa fa-asterisk"></i>
+  </div>
+
+    <div><input type="text" placeholder="variety" ng-model="friend.variety" ng-change="findFriend()"/></div>
+
+    <div><input type="text"  placeholder="age" ng-model="friend.age" ng-change="findFriend()"/></div>
+
+    <div ng-model="friend.gender">
+      <input type="radio" ng-model="friend.gender" value="NA" ng-change="findFriend()"/> N/A
+      <input type="radio" ng-model="friend.gender" value="female" ng-change="findFriend()"/> female
+      <input type="radio" ng-model="friend.gender" value="male" ng-change="findFriend()"/> male
+    </div>
+
+    <div class="isAvailable">
+      <input type="checkbox" ng-model="friend.isAvailable" value="isAvailable" ng-change="findFriend()"> Available To Adopt
+      <i class="fa fa-asterisk"></i>
+    </div>
+
+    <button type="submit" ng-click="addFriend()">Add Friend</button>
+  </form>
+  <div class="newFriendBox">New Friend Added! {{newFriend}}</div>
+  <div ng-repeat="friend in allFriends  | filter: friend">{{friend.name}}   {{friend.species}}  {{friend.gender}} {{friend.isAvailable}}</div>
+</div>
