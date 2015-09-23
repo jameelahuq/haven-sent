@@ -1,8 +1,56 @@
+@font-face {
+  font-family: Qumpellaka;
+  src: url("../images/QumpellkaNo12.otf");
+}
+
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("../images/outer_space_nya.jpg");
+  background-size:  auto auto;
+  background-repeat: no-repeat;
+  background-position: right center;
+
 }
 
+.navbar {
+  background-color: lavender;
+  opacity: .9;
+}
+
+.inputField {
+  float:left;
+  background-color: lavender;
+  opacity: .9;
+  border-radius: 4px;
+  padding: 20px;
+  width: 100%;
+
+}
+
+form div {
+  display: block;
+  margin: 10px;
+
+}
+
+h2 {
+  padding-bottom: 30px;
+}
+
+h1, h2 {
+  font-family: Qumpellaka;
+}
 a {
   color: #00B7FF;
 }
+
+.fa-asterisk{
+  color: #fc0421;
+}
+
+input {
+  opacity: 1;
+}
+

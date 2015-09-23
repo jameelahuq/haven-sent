@@ -1,0 +1,19 @@
+<div class="container inputField">
+  <h2>{{title}}</h2>
+
+  <form id="addMatach">
+    <div>
+      <input type="text" class="required" ng-model="family.name" placeholder="name" required/>
+      <i class="fa fa-asterisk"></i>
+    </div>
+    <div>
+      <input type="text" class="required" ng-model="family.phone" placeholder="phone" required/>
+      <i class="fa fa-asterisk"></i>
+    </div>
+    <div><input type="text" placeholder="variety" ng-model="family.members"/></div>
+
+    <button type="submit" ng-click="findFriend()">Find Matches</button>
+  </form>
+  <div>{{dump}}</div>
+
+</div>

@@ -8,6 +8,8 @@ var app = require('../app');
 var debug = require('debug')('haven-sent:server');
 var http = require('http');
 
+require('mongoose').connect('mongodb://localhost/haven-sent');
+
 /**
  * Get port from environment and store in Express.
  */
