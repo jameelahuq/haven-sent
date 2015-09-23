@@ -1,6 +1,8 @@
 /**
  * Created by HUQ on 9/22/15.
  */
+"use strict";
+
 var ngApp = angular.module('haven-sent', ['ui.router']);
 console.log("ngApp is running");
 
@@ -90,6 +92,16 @@ ngApp.controller('MatchCtrl', function($scope, $http) {
 
 
 });
+
+
+//ngApp.service('Family', function($http, constants) {
+//  let api = constants.apiUrl;
+//  this.index = function{$http.get()}
+//} )
+//    .config(function($stateProvider) {
+//
+//    })
+
 
   //  $scope.addTickerToTracked = (ticker) => {
   //    console.log(ticker);

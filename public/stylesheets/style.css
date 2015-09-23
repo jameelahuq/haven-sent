@@ -7,33 +7,41 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url("../images/outer_space_nya.jpg");
+  background-image: url("../images/cat-pray.jpg");
   background-size:  auto auto;
   background-repeat: no-repeat;
-  background-position: right center;
+  background-position: center top;
 
 }
 
 .navbar {
-  background-color: lavender;
-  opacity: .9;
+  background-color: papayawhip;
+  border: solid 1px darkgray;
+  opacity: .93;
+  padding: 0px;
+  float: left;
+
 }
 
 .inputField {
-  float:left;
-  background-color: lavender;
-  opacity: .9;
+  background-color: papayawhip;
+  opacity: .93;
   border-radius: 4px;
   padding: 20px;
-  width: 100%;
+  border: solid 1px darkgray;
+  float: left;
+}
 
+.inputForm {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 form div {
   display: block;
   margin: 10px;
-
 }
+
 
 h2 {
   padding-bottom: 30px;
@@ -42,6 +50,7 @@ h2 {
 h1, h2 {
   font-family: Qumpellaka;
 }
+
 a {
   color: #00B7FF;
 }
@@ -52,5 +61,10 @@ a {
 
 input {
   opacity: 1;
+}
+
+.infoBox {
+  display: inline-block;
+  vertical-align: middle;
 }
 

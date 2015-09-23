@@ -1,16 +1,18 @@
-<div class="container inputField">
-<h2>{{title}}</h2>
+<div class="inputField">
 
-<form id="findFriend table">
-  <div>
-    <input type="text" class="required" ng-model="friend.name" placeholder="name" required/>
-    <i class="fa fa-asterisk"></i>
-  </div>
 
-  <div>
-    <input type="text" class="required" ng-model="friend.species" placeholder="species" required/>
-    <i class="fa fa-asterisk"></i>
-  </div>
+
+  <form id="addFriend" class="container inputForm">
+    <h2>{{title}}</h2>
+    <div>
+      <input type="text" class="required" ng-model="friend.name" placeholder="name" required/>
+      <i class="fa fa-asterisk"></i>
+    </div>
+
+    <div>
+      <input type="text" class="required" ng-model="friend.species" placeholder="species" required/>
+      <i class="fa fa-asterisk"></i>
+    </div>
 
     <div><input type="text" placeholder="variety" ng-model="friend.variety"/></div>
 
@@ -27,7 +29,8 @@
       <i class="fa fa-asterisk"></i>
     </div>
 
-    <button type="submit" ng-click="addFriend()">Add Friend</button>
+    <button type="submit" ng-click="findFriend()">Find Friend</button>
   </form>
   <div class="infoBox">INFO BOX HERE{{dump}}</div>
+
 </div>
