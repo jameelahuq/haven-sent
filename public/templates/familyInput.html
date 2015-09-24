@@ -31,4 +31,15 @@
       <button ng-show="reveal(this)" ng-click="matchFriendToFamily($event)">Match</button>
     </div>
   </div>
+
+
+  <div ng-controller="MatchCtrl" class="potentialMatch" ng-show="isSelectingMatch()">
+  <div class="newFriendBox infoBox">
+    <div>Pick a family for the following friend...</div>
+    <div> Name: {{friend.name}} {{friend.gender}} </div>
+    <div> Species: {{friend.species}} - {{friend.variety}} </div>
+    <div>{{friend.isAvailable}} </div>
+    <button ng-click="cancelMatch()" value="cancel">Cancel Match</button>
+  </div>
+  </div>
 </div>

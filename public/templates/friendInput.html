@@ -39,12 +39,13 @@
 
 
   <div class="row petDisplay">
-      <div ng-repeat="friend in allFriends  | filter: friend"  class ="infoBox span1" >
+      <div ng-repeat="friend in allFriends  | filter: friend"  class ="infoBox span1" ng-click="receiveClick(this)">
       <!--TODO: repeat over all keys and show key and key value-->
       <!--TODO: get image and show-->
         <div> Name: {{friend.name}} {{friend.gender}} </div>
         <div> Species: {{friend.species}} - {{friend.variety}} </div>
         <div>{{friend.isAvailable}} </div>
+        <button ng-show="reveal(this)" ng-click="selectFriendToMatch($event, friend)">Match</button>
     </div>
   </div>
 </div>

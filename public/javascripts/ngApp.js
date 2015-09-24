@@ -10,6 +10,8 @@ ngApp.constant('constants', {
   apiUrl: 'http://localhost:3000'
 });
 
+var friendUnderConsideration;
+
 ngApp.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/');
@@ -44,8 +46,27 @@ ngApp.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-ngApp.controller('FriendCtrl', function($scope, $http, Friend) {
+ngApp.controller('FriendCtrl', function($scope, $http, $state, Friend) {
   $scope.title = "Find and Add a friend";
+
+  var buttonNum;
+  $scope.receiveClick = function(id) {
+    buttonNum = id;
+    console.log("Button Shown!");
+  };
+
+  $scope.reveal = function (id) {
+    return buttonNum == id;
+  };
+
+
+  $scope.selectFriendToMatch = function($event, thisFriend) {
+    friendUnderConsideration = thisFriend;
+    console.log("matchingpet:", thisFriend);
+    $state.go('familyInput');
+    $event.stopPropagation();
+
+  };
 
   Friend.showAll()
     .then(function(res) {
@@ -77,6 +98,8 @@ ngApp.controller('FamilyCtrl', function($scope, $http, Family) {
 
   var buttonNum;
 
+  //TODO: we use these following two functions two times,
+  //is it possible to make a factory?
   $scope.receiveClick = function(id) {
     buttonNum = id;
     console.log("Button Shown!");
@@ -119,8 +142,15 @@ ngApp.controller('FamilyCtrl', function($scope, $http, Family) {
 
 
 
-ngApp.controller('MatchCtrl', function($scope, $http) {
-  $scope.title = "Make a Match!";
+ngApp.controller('MatchCtrl', function($scope, $http, Friend) {
+  console.log("This is the MatchCtrl talking");
+  $scope.friend = friendUnderConsideration;
+  $scope.isSelectingMatch = function() {
+    return friendUnderConsideration;
+  };
+  $scope.cancelMatch = function () {
+    friendUnderConsideration = null;
+  };
 
   //$scope.addFriend = function () {
   //  console.log("make that match!");
@@ -148,6 +178,7 @@ ngApp.service('Family', function($http, constants) {
   this.showAll = function(){return $http.get(api + '/families');};
   this.add = function(params) {return $http.post(api + '/families', params);};
 });
+
 
 
   //  $scope.addTickerToTracked = (ticker) => {

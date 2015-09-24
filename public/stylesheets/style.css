@@ -81,4 +81,9 @@ input, .input {
   display: none;
 }
 
+.potentialMatch {
+  float:right;
+  top: 0;
+}
+
 
