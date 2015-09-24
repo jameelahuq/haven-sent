@@ -75,6 +75,24 @@ ngApp.controller('FriendCtrl', function($scope, $http, Friend) {
 ngApp.controller('FamilyCtrl', function($scope, $http, Family) {
   $scope.title = "Find and Add a Family";
 
+  var buttonNum;
+
+  $scope.receiveClick = function(id) {
+    buttonNum = id;
+    console.log("Button Shown!");
+  };
+
+  $scope.reveal = function (id) {
+    return buttonNum == id;
+  };
+
+
+
+  $scope.matchFriendToFamily = function($event) {
+    console.log("Match Made!");
+    $event.stopPropagation();
+  };
+
   Family.showAll()
       .then(function(res) {
         console.log("All family loaded");
