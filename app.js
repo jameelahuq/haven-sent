@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var friends = require('./routes/friends');
 var families = require('./routes/families');
+var matching = require('./routes/matching');
 
 
 var app = express();
@@ -19,7 +20,7 @@ app.set('view engine', 'jade');
 var corsMiddleware = function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
   next();
 };
 
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/friends', friends);
 app.use('/families', families);
+app.use('/match', matching);
 
 
 // catch 404 and forward to error handler

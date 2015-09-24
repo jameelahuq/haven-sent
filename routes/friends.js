@@ -25,13 +25,13 @@ router.post('/', function(req, res) {
   })
 });
 
-router.put('toggleAvailable/:mongoId', function(req, res) {
-  Friend.findById(req.params.mongoId, function (err, friend) {
-    friend.toggleAvailable(function (err, savedAnimal) {
-      res.send(savedAnimal)
-    });
-  });
-});
+//router.put('toggleAvailable/:mongoId', function(req, res) {
+//  Friend.findById(req.params.mongoId, function (err, friend) {
+//    friend.toggleAvailable(function (err, savedAnimal) {
+//      res.send(savedAnimal)
+//    });
+//  });
+//});
 
 
 

@@ -98,6 +98,15 @@ ngApp.controller('FamilyCtrl', function($scope, $http, Family) {
 
   var buttonNum;
 
+  $scope.friend = friendUnderConsideration;
+
+  $scope.isSelectingMatch = function() {
+    return friendUnderConsideration;
+  };
+  $scope.cancelMatch = function () {
+    friendUnderConsideration = null;
+  };
+
   //TODO: we use these following two functions two times,
   //is it possible to make a factory?
   $scope.receiveClick = function(id) {
@@ -111,9 +120,23 @@ ngApp.controller('FamilyCtrl', function($scope, $http, Family) {
 
 
 
-  $scope.matchFriendToFamily = function($event) {
+  $scope.matchFriendToFamily = function($event, item) {
     console.log("Match Made!");
     $event.stopPropagation();
+    console.log(item._id, friendUnderConsideration._id);
+    if (friendUnderConsideration) {
+      Family.match(item._id, friendUnderConsideration._id)
+      .then(function(res) {
+            $scope.family = {};
+            console.log(res.data);
+            //TODO: get here
+          })
+      .catch(function(err){
+            console.log(err);
+          });
+      friendUnderConsideration = null;
+    } else
+      $scope.noFriend = "There is no friend to Match";
   };
 
   Family.showAll()
@@ -142,16 +165,13 @@ ngApp.controller('FamilyCtrl', function($scope, $http, Family) {
 
 
 
-ngApp.controller('MatchCtrl', function($scope, $http, Friend) {
+ngApp.controller('MatchCtrl', function($scope, $http, Family) {
   console.log("This is the MatchCtrl talking");
-  $scope.friend = friendUnderConsideration;
-  $scope.isSelectingMatch = function() {
-    return friendUnderConsideration;
-  };
-  $scope.cancelMatch = function () {
-    friendUnderConsideration = null;
-  };
 
+
+
+
+  //
   //$scope.addFriend = function () {
   //  console.log("make that match!");
   //  $http.post('http://localhost:3000/friends', $scope.friend)
@@ -177,6 +197,7 @@ ngApp.service('Family', function($http, constants) {
   let api = constants.apiUrl;
   this.showAll = function(){return $http.get(api + '/families');};
   this.add = function(params) {return $http.post(api + '/families', params);};
+  this.match = function(familyId, friendId) {return $http.put(api + '/match/' + familyId + '/' + friendId )}
 });
 
 

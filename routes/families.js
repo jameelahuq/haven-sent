@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   console.log("getting families:");
   Family.find({}, function(err, Family) {
     res.send(err || Family);
-  });
+  }).populate('members');
 
 });
 
