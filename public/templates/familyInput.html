@@ -1,33 +1,33 @@
 <div class="container inputField">
 <h2>{{title}}</h2>
 
-<form id="findFriend table" >
+<form id="findFamily table" >
   <div>
-    <input type="text" class="required" ng-model="friend.name" placeholder="name" required  ng-change="findFriend()"/>
+    <input type="text" class="required" ng-model="family.name" placeholder="name" required/>
     <i class="fa fa-asterisk"></i>
   </div>
 
   <div>
-    <input type="text" class="required" ng-model="friend.species" placeholder="species" required ng-change="findFriend()"/>
+    <input type="text" class="required" ng-model="family.phone" placeholder="phone" required/>
     <i class="fa fa-asterisk"></i>
   </div>
 
-    <div><input type="text" placeholder="variety" ng-model="friend.variety" ng-change="findFriend()"/></div>
+  <div><input type="text" placeholder="address" ng-model="family.address"/></div>
+  <div><input type="text"  placeholder="notes" ng-model="family.notes"/></div>
+  <div><input type="text"  placeholder="members" ng-model="family.members"/></div>
 
-    <div><input type="text"  placeholder="age" ng-model="friend.age" ng-change="findFriend()"/></div>
 
-    <div ng-model="friend.gender">
-      <input type="radio" ng-model="friend.gender" value="NA" ng-change="findFriend()"/> N/A
-      <input type="radio" ng-model="friend.gender" value="female" ng-change="findFriend()"/> female
-      <input type="radio" ng-model="friend.gender" value="male" ng-change="findFriend()"/> male
-    </div>
 
-    <div class="isAvailable">
-      <input type="checkbox" ng-model="friend.isAvailable" value="isAvailable" ng-change="findFriend()"> Available To Adopt
-      <i class="fa fa-asterisk"></i>
-    </div>
-
-    <button type="submit" ng-click="addFriend()">Add Friend</button>
+  <button type="submit" ng-click="addFamily()">Add Friend</button>
   </form>
-  <div class="infoBox">INFO BOX HERE{{dump}}</div>
+
+  <div class="row petDisplay">
+    <div ng-repeat="family in allFamilies  | filter: family"  class ="infoBox span1" >
+      <!--TODO: repeat over all keys and show key and key value-->
+      <!--TODO: get image and show-->
+      <div> Name: {{family.name}} </div>
+      <div> Phone: {{family.phone}} </div>
+      <div> Friends: {{family.friends}} </div>
+    </div>
+  </div>
 </div>

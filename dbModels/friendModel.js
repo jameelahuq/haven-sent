@@ -15,6 +15,12 @@ var friendScheme = Mongoose.Schema({
   description: String
   });
 
+friendScheme.methods.toggleAvailable = function(cb) {
+  this.isAvailable = !this.isAvailable;
+  this.save(cb);
+}
+
 var Friend = Mongoose.model("Friend", friendScheme);
+
 
 module.exports = Friend;

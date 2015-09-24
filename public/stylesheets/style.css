@@ -17,7 +17,7 @@ body {
 .navbar {
   background-color: papayawhip;
   border: solid 1px darkgray;
-  opacity: .93;
+  opacity: .8;
   padding: 0px;
   float: left;
 
@@ -25,7 +25,7 @@ body {
 
 .inputField {
   background-color: papayawhip;
-  opacity: .93;
+  opacity: .8;
   border-radius: 4px;
   padding: 20px;
   border: solid 1px darkgray;
@@ -63,11 +63,18 @@ input, .input {
   background: transparent;
   border: none;
   border-bottom: solid lightgrey 1px;
-  color: darkgray;
 }
 
 .infoBox {
   display: inline-block;
   vertical-align: middle;
+  margin: 10px;
+  border: 1px solid lightgrey;
+  padding: 15px;
+  background-color: aliceblue;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
+
 

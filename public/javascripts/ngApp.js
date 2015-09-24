@@ -60,8 +60,9 @@ ngApp.controller('FriendCtrl', function($scope, $http, Friend) {
     console.log("add that friend!");
 
     Friend.add($scope.friend)
-      .then(function(data) {
-        $scope.newFriend = data;
+      .then(function(res) {
+          $scope.newFriend = res.data;
+          $scope.friend = {};
       })
       .catch(function(error){
         $scope.newFriend = error;
@@ -70,31 +71,34 @@ ngApp.controller('FriendCtrl', function($scope, $http, Friend) {
 
 });
 
-//ngApp.controller('FamilyCtrl', function($scope, $http, Family) {
-//  $scope.title = "Find and Add a family";
-//
-//  Family.showAll()
-//      .then(function(data) {
-//        console.log("All families loaded");
-//        $scope.dump = data;
-//      })
-//      .catch(function(error) {
-//        console.log(error);
-//      });
-//
-//  $scope.addFamily = function () {
-//    console.log("add that family!");
-//
-//    Family.add($scope.family)
-//        .then(function(data) {
-//          $scope.dump = data;
-//        })
-//        .catch(function(error){
-//          $scope.dump = error;
-//        })
-//  };
-//
-//});
+
+ngApp.controller('FamilyCtrl', function($scope, $http, Family) {
+  $scope.title = "Find and Add a Family";
+
+  Family.showAll()
+      .then(function(res) {
+        console.log("All family loaded");
+        $scope.allFamilies = res.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+  $scope.addFamily = function () {
+    console.log("add that family!");
+
+    Family.add($scope.family)
+        .then(function(res) {
+          $scope.newFamily = res.data;
+          $scope.family = {};
+        })
+        .catch(function(error){
+          $scope.newFamily = error;
+        })
+  };
+
+});
+
 
 
 ngApp.controller('MatchCtrl', function($scope, $http) {
@@ -121,11 +125,11 @@ ngApp.service('Friend', function($http, constants) {
   this.add = function(params) {return $http.post(api + '/friends', params);};
 });
 
-//ngApp.service('Family', function($http, constants) {
-//  let api = constants.apiUrl;
-//  this.showAll = function(){return $http.get(api + '/families');};
-//  this.add = function(params) {return $http.post(api + '/families', params);};
-//});
+ngApp.service('Family', function($http, constants) {
+  let api = constants.apiUrl;
+  this.showAll = function(){return $http.get(api + '/families');};
+  this.add = function(params) {return $http.post(api + '/families', params);};
+});
 
 
   //  $scope.addTickerToTracked = (ticker) => {
